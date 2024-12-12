@@ -1,9 +1,15 @@
 #Emissionskalkulator_Telearbeit.py
-#setup: pip install streamlit gspread oauth2client pandas plotly
+#run here: https://emissionskalkulatortelearbeit.streamlit.app
+
+#alternatively, use the local setup:
+#pip install streamlit gspread oauth2client pandas plotly
+#create own google API and share datasheet with service account
+#datasheet is here: https://docs.google.com/spreadsheets/d/1YbvSFcHNWEOmGbXMenB-kHTXnDG0oEJ8qTTB0lB_zyQ/edit?usp=sharing
+#use credentials.json in same folder as Emissionskalkulator_Telearbeit.py
+#comment in indicated lines for creds from json, comment out indicated lines for google_creds and creds from google_creds
 #run with:
 #streamlit run Emissionskalkulator_Telearbeit.py
-#datasheet is here: https://docs.google.com/spreadsheets/d/1YbvSFcHNWEOmGbXMenB-kHTXnDG0oEJ8qTTB0lB_zyQ/edit?usp=sharing
-#use credentials.json in same folder as Emissionskalkulator_Telearbeit.py, or create own google API and share datasheet with service account
+
 
 import streamlit as st
 import gspread
@@ -22,7 +28,7 @@ def update_values():
 # Google Sheets API setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 # creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope) # use this with credentials.json, othewise use:
-# Zugriff auf Secrets ab hier aussternen, falls credentials.json verwendet werden soll
+# Zugriff auf Secrets, comment out the following part if credentials.json should be used
 google_creds = {
     "type": st.secrets["google_credentials"]["type"],
     "project_id": st.secrets["google_credentials"]["project_id"],
@@ -36,7 +42,7 @@ google_creds = {
     "client_x509_cert_url": st.secrets["google_credentials"]["client_x509_cert_url"],
 }
 creds = ServiceAccountCredentials.from_json_keyfile_dict(google_creds, scope)
-#Zugriff auf Secrets bis hier aussternen, falls credentials.json verwendet werden soll
+#Zugriff auf Secrets, comment out section above if credentials.json should be used
 
 client = gspread.authorize(creds)
 
