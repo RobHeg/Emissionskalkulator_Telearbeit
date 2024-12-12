@@ -272,6 +272,11 @@ right_text = "<b>Präsenzarbeit ist zu bevorzugen</b>" if sum_values > 0 else "P
 fig_sum.add_annotation( x=0.25, y=0.5, text=left_text, showarrow=False, xref="paper", yref="paper", align="right", xanchor='right' ) 
 fig_sum.add_annotation( x=0.75, y=0.5, text=right_text, showarrow=False, xref="paper", yref="paper", align="left", xanchor='left' )
 
+if sum_values < 0:
+    st.write(f"Wenn Sie Telearbeit praktizieren senkt sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche. Eine Umstellung auf das Telearbeitsmodell lohnt sich damit aus Sicht des Treibhauspotenzials!")
+else:
+    st.write(f"Wenn Sie Telearbeit praktizieren erhöht sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche. Aus Sicht des Treibhauspotenzials sollte daher Präsenzarbeit durchgeführt werden!")
+
 # plot charts
 st.plotly_chart(fig_sum)
 with st.expander("Aufschlüsselung nach Kategorien"):
