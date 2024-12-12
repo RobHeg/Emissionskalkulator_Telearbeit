@@ -264,7 +264,7 @@ fig_sum = px.bar(
     color_discrete_sequence=[color_sum] 
 )
 max_value = max(abs(sum_values), 1)
-fig_sum.update_layout( xaxis_title="[CO2e je Arbeitstag gegenüber vollständiger Präsenzarbeit]", yaxis_title=None, height=200, showlegend=False, yaxis=dict(showticklabels=False),
+fig_sum.update_layout( xaxis_title="[kg CO2e je Woche gegenüber vollständiger Präsenzarbeit]", yaxis_title=None, height=200, showlegend=False, yaxis=dict(showticklabels=False),
     xaxis=dict( range=[-max_value*2, max_value*2], zeroline=True, zerolinewidth=2, zerolinecolor='black', gridcolor='LightGray' ))
 
 left_text = "<b>Telearbeit ist zu bevorzugen</b>" if sum_values < 0 else "Telearbeit ist zu bevorzugen" 
