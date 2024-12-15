@@ -252,7 +252,7 @@ newnames = {'green': 'Emissionsreduktion durch Telearbeit', 'red': 'Emissionserh
 fig_categories.for_each_trace(lambda t: t.update(name = newnames[t.name]))
 
 # bar chart sum values (Summe der Kategorien) preparations
-sum_values = sum(values) * 5 # multipliziert mit 5 für Emissionen je Arbeitswoche
+sum_values = sum(values) * 5 # multipliziert mit 5 für Emissionen je Woche
 color_sum = 'green' if sum_values < 0 else 'red'
 
 fig_sum = px.bar(
@@ -272,10 +272,11 @@ right_text = "<b>Präsenzarbeit ist zu bevorzugen</b>" if sum_values > 0 else "P
 fig_sum.add_annotation( x=0.25, y=0.5, text=left_text, showarrow=False, xref="paper", yref="paper", align="right", xanchor='right' ) 
 fig_sum.add_annotation( x=0.75, y=0.5, text=right_text, showarrow=False, xref="paper", yref="paper", align="left", xanchor='left' )
 
+sum_values_Jahr = sum_values / 5 * 235
 if sum_values < 0:
-    st.write(f"Wenn Sie Telearbeit praktizieren senkt sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche. Eine Umstellung auf das Telearbeitsmodell lohnt sich damit aus Sicht des Treibhauspotenzials!")
+    st.write(f"Wenn Sie Telearbeit praktizieren senkt sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche oder {sum_values_Jahr} kg CO2e pro Jahr. Eine Umstellung auf das Telearbeitsmodell lohnt sich damit aus Sicht des Treibhauspotenzials!")
 else:
-    st.write(f"Wenn Sie Telearbeit praktizieren erhöht sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche. Aus Sicht des Treibhauspotenzials sollte daher Präsenzarbeit durchgeführt werden!")
+    st.write(f"Wenn Sie Telearbeit praktizieren erhöht sich das Treibhauspotenzial um vorraussichtlich {sum_values} kg CO2e je Woche oder {sum_values_Jahr} kg CO2e pro Jahr. Aus Sicht des Treibhauspotenzials sollte daher Präsenzarbeit durchgeführt werden!")
 
 # plot charts
 st.plotly_chart(fig_sum)
