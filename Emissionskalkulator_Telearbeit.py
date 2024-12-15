@@ -252,7 +252,7 @@ newnames = {'green': 'Emissionsreduktion durch Telearbeit', 'red': 'Emissionserh
 fig_categories.for_each_trace(lambda t: t.update(name = newnames[t.name]))
 
 # bar chart sum values (Summe der Kategorien) preparations
-sum_values = sum(values)
+sum_values = sum(values) * 5 # multipliziert mit 5 für Emissionen je Arbeitswoche
 color_sum = 'green' if sum_values < 0 else 'red'
 
 fig_sum = px.bar(
